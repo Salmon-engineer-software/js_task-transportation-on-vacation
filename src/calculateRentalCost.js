@@ -4,18 +4,24 @@
  * @return {number}
  */
 function calculateRentalCost(days) {
-  // 1. Calcula o custo base (40 por dia)
-  let total = days * 40;
+  const BASE_PRICE = 40;
+  const LONG_TERM = 7;
+  const LONG_TERM_DISCOUNT = 50;
+  const MID_TERM = 3;
+  const MID_TERM_DISCOUNT = 20;
 
-  // 2. Aplica os descontos baseados na quantidade de dias
-  if (days >= 7) {
-    total -= 50; // Desconto de 50 para 7 ou mais dias
-  } else if (days >= 3) {
-    total -= 20; // Desconto de 20 para 3 ou mais dias
+  const totalWithoutDiscount = days * BASE_PRICE;
+
+  if (days >= LONG_TERM) {
+    return totalWithoutDiscount - LONG_TERM_DISCOUNT;
   }
 
-  // 3. Retorna o valor final
-  return total;
+  if (days >= MID_TERM) {
+    return totalWithoutDiscount - MID_TERM_DISCOUNT;
+  }
+
+  return totalWithoutDiscount;
+
 }
 
 module.exports = calculateRentalCost;
